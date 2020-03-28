@@ -7,5 +7,5 @@
 	"description":"Long chests for train cargos ideal with LTN.",
 	"dependencies": ["base"],
     "Licence": "MIT",
-    "factorio_version": "0.17"
+    "factorio_version": "0.18"
 }
