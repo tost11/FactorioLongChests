@@ -6,6 +6,7 @@ men_order = {}
 men_order["wood"] = 0
 men_order["iron"] = 1
 men_order["steel"] = 2
+men_order["brass"] = 3
 
 function define_box_item(ty,si)
 	local result = 
@@ -38,34 +39,34 @@ function define_box_item_v(ty,si)
 end
 
 
-data:extend(
-{
-	define_box_item("wood",1),
-	define_box_item_v("wood",1),
-	define_box_item("iron",1),
-	define_box_item_v("iron",1),
-	define_box_item("steel",1),
-	define_box_item_v("steel",1),
-	
-	define_box_item("wood",2),
-	define_box_item_v("wood",2),
-	define_box_item("iron",2),
-	define_box_item_v("iron",2),
-	define_box_item("steel",2),
-	define_box_item_v("steel",2),
-	
-	define_box_item("wood",3),
-	define_box_item_v("wood",3),
-	define_box_item("iron",3),
-	define_box_item_v("iron",3),
-	define_box_item("steel",3),
-	define_box_item_v("steel",3),
-	
-	define_box_item("wood",4),
-	define_box_item_v("wood",4),
-	define_box_item("iron",4),
-	define_box_item_v("iron",4),
-	define_box_item("steel",4),
-	define_box_item_v("steel",4),
-}
-)
+function generateData()
+    local res = {}
+
+    local normalTypes = {"wood","iron","steel"}
+
+    for _, name in ipairs(normalTypes) do
+        for i = 1,4,1
+        do
+            table.insert(res, define_box_item(name, i))
+            table.insert(res, define_box_item_v(name, i))
+        end
+    end
+
+    if mods["boblogistics"] then
+
+      local bobTypes = {"brass","titanium"}
+
+      for _, name in ipairs(bobTypes) do
+          for i = 1,4,1
+          do
+              table.insert(res, define_box_item(name, i))
+              table.insert(res, define_box_item_v(name, i))
+          end
+      end
+    end
+
+    return res;
+end
+
+
+data:extend(generateData())

@@ -45,6 +45,12 @@ function get_data()
 	gen_data("wood","wood",24,res,4)
 	gen_data("iron","iron-plate",48,res,4)
 	gen_data("steel","steel-plate",48,res,4)
+
+	if mods["boblogistics"] then
+      gen_data("brass","brass-plate",48,res,4)
+      gen_data("titanium","titanium-plate",48,res,4)
+    end
+
 	return res;
 end
 

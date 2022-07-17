@@ -1,45 +1,56 @@
-data:extend(
-{
-  {
-    type = "item-group",
-    name = "Chests",
-    order = "c-1",
-	inventory_order = "c-1",
-    icon = "__TostsChests__/graphics/technology/icon-normal.png",
-    icon_size = 64,
-  },
-  {
-    type = "item-subgroup",
-    name = "long-chest-wood",
-    group = "Chests",
-    order = "1"
-  },{
-    type = "item-subgroup",
-    name = "long-chest-wood-v",
-    group = "Chests",
-    order = "2"
-  },
-  {
-    type = "item-subgroup",
-    name = "long-chest-iron",
-    group = "Chests",
-    order = "3"
-  },{
-    type = "item-subgroup",
-    name = "long-chest-iron-v",
-    group = "Chests",
-    order = "4"
-  },
-  {
-    type = "item-subgroup",
-    name = "long-chest-steel",
-    group = "Chests",
-    order = "5"
-  },{
-    type = "item-subgroup",
-    name = "long-chest-steel-v",
-    group = "Chests",
-    order = "6"
-  },
-}
-)
+function generateData()
+    local res = {{
+        type = "item-group",
+        name = "Chests",
+        order = "c-1",
+        inventory_order = "c-1",
+        icon = "__TostsChests__/graphics/technology/icon-normal.png",
+        icon_size = 64
+    }}
+
+    local normalTypes = {"wood","iron","steel"}
+
+    local i = 0
+    for _, name in ipairs(normalTypes) do
+        i = i + 1
+        table.insert(res, {
+            type = "item-subgroup",
+            name = "long-chest-" .. name,
+            group = "Chests",
+            order = "" .. i
+        })
+        table.insert(res, {
+            type = "item-subgroup",
+            name = "long-chest-" .. name .. "-v",
+            group = "Chests",
+            order = "" .. i
+        })
+    end
+
+    if mods["boblogistics"] then
+
+        local bobTypes = {"brass","titanium"}
+
+        local i = 0
+        for _, name in ipairs(bobTypes) do
+            i = i + 1
+            table.insert(res, {
+                type = "item-subgroup",
+                name = "long-chest-" .. name,
+                group = "Chests",
+                order = "" .. i
+            })
+            table.insert(res, {
+                type = "item-subgroup",
+                name = "long-chest-" .. name .. "-v",
+                group = "Chests",
+                order = "" .. i
+            })
+        end
+
+    end
+
+    return res
+end
+
+data:extend(generateData())

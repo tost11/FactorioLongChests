@@ -3,6 +3,10 @@ cont_size["wood"] = 16
 cont_size["iron"] = 32
 cont_size["steel"] = 48
 
+--for bobs mod
+cont_size["brass"] = 64
+cont_size["titanium"] = 80
+
 function define_box(ty,si,inv)
 	local sw = 3.0
 	local sh = 0.5
@@ -102,32 +106,34 @@ function define_box_v(ty,si)
 	return result;
 end
 
-data:extend({
-	define_box("wood", 1),
-	define_box_v("wood", 1),
-	define_box("iron", 1),
-	define_box_v("iron", 1),
-	define_box("steel", 1),
-	define_box_v("steel", 1),
-	
-	define_box("wood", 2),
-	define_box_v("wood", 2),
-	define_box("iron", 2),
-	define_box_v("iron", 2),
-	define_box("steel", 2),
-	define_box_v("steel", 2),
-	
-	define_box("wood", 3),
-	define_box_v("wood", 3),
-	define_box("iron", 3),
-	define_box_v("iron", 3),
-	define_box("steel", 3),
-	define_box_v("steel", 3),
-	
-	define_box("wood", 4),
-	define_box_v("wood", 4),
-	define_box("iron", 4),
-	define_box_v("iron", 4),
-	define_box("steel", 4),
-	define_box_v("steel", 4)
-})
+
+function generateData()
+    local res = {}
+
+    local normalTypes = {"wood","iron","steel"}
+
+    for _, name in ipairs(normalTypes) do
+        for i = 1,4,1
+        do
+            table.insert(res, define_box(name, i))
+            table.insert(res, define_box_v(name, i))
+        end
+    end
+
+    if mods["boblogistics"] then
+
+      local bobTypes = {"brass","titanium"}
+
+      for _, name in ipairs(bobTypes) do
+          for i = 1,4,1
+          do
+              table.insert(res, define_box(name, i))
+              table.insert(res, define_box_v(name, i))
+          end
+      end
+    end
+
+    return res;
+end
+
+data:extend(generateData())
