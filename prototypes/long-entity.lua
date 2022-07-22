@@ -7,7 +7,7 @@ cont_size["steel"] = 48
 cont_size["brass"] = 64
 cont_size["titanium"] = 80
 
-function define_box(ty,si,inv)
+function define_box(ty,si,sound)
 	local sw = 3.0
 	local sh = 0.5
 	local dw = 0.5
@@ -28,8 +28,8 @@ function define_box(ty,si,inv)
 		selection_box = {{-wh, -sh}, {wh, sh}},
 		fast_replaceable_group =  "container",
 		inventory_size = cont_size[ty] * 6 * si,
-		open_sound = { filename = "__base__/sound/wooden-chest-open.ogg" },
-		close_sound = { filename = "__base__/sound/wooden-chest-close.ogg" },
+		open_sound = { filename = "__base__/sound/"..sound.."-chest-open.ogg" },
+		close_sound = { filename = "__base__/sound/"..sound.."-chest-close.ogg" },
 		picture =
 		{
 		  filename = "__TostsChests__/graphics/entity/long-" .. ty .. "-" .. si .. ".png",
@@ -55,7 +55,7 @@ function define_box(ty,si,inv)
 	return result;
 end
 	
-function define_box_v(ty,si)
+function define_box_v(ty,si,sound)
 	local sh = 3.0
 	local sw = 0.5
 	local dh = 0.5
@@ -76,8 +76,8 @@ function define_box_v(ty,si)
 		selection_box = {{-sw, -wh}, {sw, wh}},
 		fast_replaceable_group =  "container",
 		inventory_size = cont_size[ty] * 6 * si,
-		open_sound = { filename = "__base__/sound/wooden-chest-open.ogg" },
-		close_sound = { filename = "__base__/sound/wooden-chest-close.ogg" },
+		open_sound = { filename = "__base__/sound/"..sound.."-chest-open.ogg" },
+		close_sound = { filename = "__base__/sound/"..sound.."-chest-close.ogg" },
 		picture =
 		{
 		  filename = "__TostsChests__/graphics/entity/long-" .. ty .. "-" .. si .. "-v.png",
@@ -111,13 +111,15 @@ function generateData()
     local res = {}
 
     local normalTypes = {"wood","iron","steel"}
+    sound = "wooden"
 
     for _, name in ipairs(normalTypes) do
         for i = 1,4,1
         do
-            table.insert(res, define_box(name, i))
-            table.insert(res, define_box_v(name, i))
+            table.insert(res, define_box(name, i,sound))
+            table.insert(res, define_box_v(name, i,sound))
         end
+        sound = "metallic"
     end
 
     if mods["boblogistics"] then
@@ -127,8 +129,8 @@ function generateData()
       for _, name in ipairs(bobTypes) do
           for i = 1,4,1
           do
-              table.insert(res, define_box(name, i))
-              table.insert(res, define_box_v(name, i))
+              table.insert(res, define_box(name, i,"metallic"))
+              table.insert(res, define_box_v(name, i,"metallic"))
           end
       end
     end

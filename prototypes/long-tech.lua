@@ -24,7 +24,7 @@ function generateData()
       {
         type = "technology",
         name = "long-chests-wood",
-        icon = "__TostsChests__/graphics/technology/icon-normal.png",
+        icon = "__TostsChests__/graphics/technology/tech-wood.png",
         icon_size = 64,
         effects = add_data("wood",res),
         prerequisites = {},
@@ -40,7 +40,7 @@ function generateData()
     },{
         type = "technology",
         name = "long-chests-iron",
-        icon = "__TostsChests__/graphics/technology/icon-normal.png",
+        icon = "__TostsChests__/graphics/technology/tech-iron.png",
         icon_size = 64,
         effects = add_data("iron"),
         prerequisites = {},
@@ -56,7 +56,7 @@ function generateData()
     },{
         type = "technology",
         name = "long-chests-steel",
-        icon = "__TostsChests__/graphics/technology/icon-normal.png",
+        icon = "__TostsChests__/graphics/technology/tech-steel.png",
         icon_size = 64,
         effects = add_data("steel"),
         prerequisites = {"steel-processing"},
@@ -76,7 +76,7 @@ function generateData()
       table.insert(res, {
            type = "technology",
            name = "long-chests-brass",
-           icon = "__TostsChests__/graphics/technology/icon-normal.png",
+           icon = "__TostsChests__/graphics/technology/tech-brass.png",
            icon_size = 64,
            effects = add_data("brass"),
            prerequisites = {"zinc-processing"},
@@ -95,7 +95,7 @@ function generateData()
       table.insert(res, {
             type = "technology",
             name = "long-chests-titanium",
-            icon = "__TostsChests__/graphics/technology/icon-normal.png",
+            icon = "__TostsChests__/graphics/technology/tech-titanium.png",
             icon_size = 64,
             effects = add_data("titanium"),
             prerequisites = {"titanium-processing"},
