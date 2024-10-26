@@ -10,12 +10,14 @@ function gen_data(name,cost,amount,dict,count)
 			energy_required = 6,
 			ingredients =
 			{
-				{cost, amount},
+				{type="item",name=cost, amount=amount}
 			},
-			result = n
+			results = {
+				 {type="item",name=n,amount = 1}
+			}
 		}
 		if i > 1 then
-			table.insert(res.ingredients,{n2,1})
+			table.insert(res.ingredients,{type="item",name=n2,amount=1})
 		end
 		table.insert(dict,res);
 		
@@ -28,12 +30,14 @@ function gen_data(name,cost,amount,dict,count)
 			energy_required = 6,
 			ingredients =
 			{
-				{cost, amount},
+				{type="item",name=cost, amount=amount}
 			},
-			result = n
+			results = {
+				{type="item",name=n,amount = 1}
+			}
 		}
 		if i > 1 then
-			table.insert(res.ingredients,{n2,1})
+			table.insert(res.ingredients,{type="item",name=n2,amount=1})
 		end
 		table.insert(dict,res);
 		
@@ -47,9 +51,9 @@ function get_data()
 	gen_data("steel","steel-plate",48,res,4)
 
 	if mods["boblogistics"] then
-      gen_data("brass","brass-plate",48,res,4)
-      gen_data("titanium","titanium-plate",48,res,4)
-    end
+	      gen_data("brass","brass-plate",48,res,4)
+	      gen_data("titanium","titanium-plate",48,res,4)
+	end
 
 	return res;
 end
